@@ -12,4 +12,14 @@ router.get('/tasks', function(req, res, next){
 	});
 });
 
+
+router.get('/tasks/:id', function(req, res, next){
+	db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)},function(err, task){
+		if(err){
+			res.send(err);
+		}
+		res.json(task);
+	});
+});
+
 module.exports = router;
